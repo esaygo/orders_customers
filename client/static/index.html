@@ -40,6 +40,7 @@
             }
           factory.create = function(customer_info, callback){
             $http.post('/customers', customer_info).success(function(customers){
+              console.log("in create factory, response", customers);
               callback(customers);
             })
           }
@@ -65,7 +66,13 @@
           // }
           $scope.create = function() {
             customerFactory.create($scope.new_customer, function(customers){
-              $scope.customers = customers;
+              console.log("in create factory, response", customers);
+              if(customers.status === false){
+                //console.log("the customer already exists");
+                $scope.message = "the customer already exists";
+              } else {
+                $scope.customers = customers;
+              }
             });
             $scope.new_customer = {};
             }
