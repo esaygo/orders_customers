@@ -7,4 +7,6 @@ module.exports = function(app) {
 
   app.post('/customers', customers.create);
 
+  app.post('/customers/:id', customers.delete);
+
 }

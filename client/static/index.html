@@ -43,10 +43,11 @@
               callback(customers);
             })
           }
-          // factory.delete = function(customerID) {
-          //   customers.splice(customers.indexOf(customerID), 1);
-          //   return customers;
-          // }
+          factory.delete = function(customerID, callback) {
+            $http.post('/customers/'+ customerID).success(function(customers){
+              callback(customers);
+            })
+          }
 
           return factory;
         });
@@ -69,11 +70,12 @@
             $scope.new_customer = {};
             }
 
-        //   $scope.delete = function(customerID) {
-        //     customerFactory.delete(customerID, function(customers){
-        //         $scope.customers = customers;
-        //   }
-        //
+          $scope.delete = function(customerID) {
+            customerFactory.delete(customerID, function(customers){
+                $scope.customers = customers;
+          })
+        }
+
         });
 
       </script>

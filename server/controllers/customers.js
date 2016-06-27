@@ -39,7 +39,17 @@ module.exports = {
   },
 
   delete: function(req, res){
-    console.log(req.body);
+    //console.log("to dlete",req.params.id);
+    Customer.remove({_id: req.params.id}, function(err){
+        if(err){
+          console.log("error deleting record");
+          res.json(err);
+        }else{
+          //res.json({success: true});
+          console.log("successfully deleted");
+          res.redirect('/customers');
+        }
+      });
   }
 
   //  create_comment: function(req, res) {
